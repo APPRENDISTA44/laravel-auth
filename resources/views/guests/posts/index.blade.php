@@ -8,6 +8,8 @@
         <ul>
           @foreach ($posts as $post)
             <li>{{$post->user->name}} - {{$post->title}}</li>
+            <a class="btn btn-primary" href="{{route('posts.show',$post)}}">Leggi</a>
+
           @endforeach
         </ul>
       </div>
