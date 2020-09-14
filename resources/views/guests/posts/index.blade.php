@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h2>Benvenuto {{$user->name}} nella lista post</h2>
+        <h2>Benvenuto ecco la lista post</h2>
 
         <ul>
           @foreach ($posts as $post)

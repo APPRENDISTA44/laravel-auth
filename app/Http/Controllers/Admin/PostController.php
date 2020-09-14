@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 
 class PostController extends Controller
 {
@@ -16,7 +17,8 @@ class PostController extends Controller
     public function index()
     {
       $posts = Post::all();
-      return view('admin.posts.index',compact('posts'));
+      $user = Auth::user();
+      return view('admin.posts.index',compact('posts','user'));
     }
 
     /**
