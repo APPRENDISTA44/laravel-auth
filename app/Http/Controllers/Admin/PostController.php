@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
-use App\User;
+// use App\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PostCreateMail;
 
 class PostController extends Controller
 {
@@ -43,7 +45,7 @@ class PostController extends Controller
       $request->validate([
         'title' => 'required|max:255',
         'content' => 'required|max:3000',
-        'image_path' => 'image'
+        'image_path' => 'required|image'
       ]);
 
       $data = $request->all();
@@ -59,6 +61,8 @@ class PostController extends Controller
         $new_post->image_path = $path;
       }
       $new_post->save();
+
+      Mail::to($new_post->user->email)->send(new PostCreateMail);
 
       return redirect()->route('posts.show', $new_post);
 

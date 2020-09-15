@@ -15,9 +15,15 @@
 
         </div>
 
-        <div>
-          <img src="{{$post->image_path}}" alt="">
-        </div>
+        @if (strpos($post->image_path,"ttps") != false)
+          <div>
+            <img src="{{$post->image_path}}" alt="">
+          </div>
+        @else
+          <div>
+            <img src="{{asset('storage') . '/' . $post->image_path }}" alt="">
+          </div>
+        @endif
 
         <div>
           <p>{{$post->content}}</p>
